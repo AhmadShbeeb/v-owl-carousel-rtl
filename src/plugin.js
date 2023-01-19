@@ -1,7 +1,7 @@
-import VOwlCarousel from './Carousel.vue';
+import VOwlCarouselRtl from "./Carousel.vue";
 
 module.exports = {
   install: function (Vue, options) {
-    Vue.component('v-owl-carousel', VOwlCarousel);
-  }
+    Vue.component("v-owl-carousel-rtl", VOwlCarouselRtl);
+  },
 };

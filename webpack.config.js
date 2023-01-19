@@ -1,76 +1,72 @@
-const webpack = require('webpack');
-const merge = require('webpack-merge');
-const path = require('path');
+const webpack = require("webpack");
+const merge = require("webpack-merge");
+const path = require("path");
 
 var config = {
   output: {
-    path: path.resolve(__dirname + '/dist/'),
+    path: path.resolve(__dirname + "/dist/"),
   },
   module: {
     loaders: [
       {
         test: /\.js$/,
-        loader: 'babel',
+        loader: "babel",
         include: __dirname,
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       {
         test: /\.vue$/,
-        loader: 'vue'
+        loader: "vue",
       },
       {
         test: /\.css$/,
-        loaders: [
-          'vue-style-loader',
-          'css-loader'
-        ]
+        loaders: ["vue-style-loader", "css-loader"],
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
-        loader: 'file-loader',
+        loader: "file-loader",
         options: {
-          name: '[name].[ext]?[hash]'
-        }
-      }
-    ]
+          name: "[name].[ext]?[hash]",
+        },
+      },
+    ],
   },
   externals: {
-    moment: 'moment'
+    moment: "moment",
   },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin( {
-      minimize : true,
-      sourceMap : false,
+    new webpack.optimize.UglifyJsPlugin({
+      minimize: true,
+      sourceMap: false,
       mangle: true,
       compress: {
-        warnings: false
-      }
-    } ),
+        warnings: false,
+      },
+    }),
     new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery',
-      'window.jQuery': 'jquery'
-    })
-  ]
+      $: "jquery",
+      jQuery: "jquery",
+      "window.jQuery": "jquery",
+    }),
+  ],
 };
-
 
 module.exports = [
   merge(config, {
-    entry: path.resolve(__dirname + '/src/plugin.js'),
+    entry: path.resolve(__dirname + "/src/plugin.js"),
     output: {
-      filename: 'v-owl-carousel.min.js',
-      libraryTarget: 'window',
-      library: 'VOwlCarousel',
-    }
+      filename: "v-owl-carousel-rtl.min.js",
+      libraryTarget: "window",
+      library: "VOwlCarouselRtl",
+    },
   }),
   merge(config, {
-    entry: path.resolve(__dirname + '/src/Carousel.vue'),
+    entry: path.resolve(__dirname + "/src/Carousel.vue"),
     output: {
-      filename: 'v-owl-carousel.js',
-      libraryTarget: 'umd',
-      library: 'v-owl-carousel',
-      umdNamedDefine: true
-    }
-  })
+      filename: "v-owl-carousel-rtl.js",
+      libraryTarget: "umd",
+      library: "v-owl-carousel-rtl",
+      umdNamedDefine: true,
+    },
+  }),
 ];
